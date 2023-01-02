@@ -19,8 +19,8 @@ target/
 *.iml
 *.ipr
 
-javacore.*
-Snap.*
+*javacore.*
+*Snap.*
 
 ### NetBeans ###
 /nbproject/private/
