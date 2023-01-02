@@ -1,4 +1,4 @@
-package com.news.actors;
+package com.newsarticles.actors;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,9 +10,9 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 import com.kafka.KafkaProducer;
-import com.news.entities.NewsArticle;
-import com.news.messages.PublishEventIntent;
-import com.news.services.NewsArticleService;
+import com.newsarticles.entities.NewsArticle;
+import com.newsarticles.messages.PublishEventIntent;
+import com.newsarticles.services.NewsArticleService;
 
 public class NewsArticleWorker extends AbstractBehavior<PublishEventIntent> {
     private final NewsArticleService newsArticleService;
@@ -21,7 +21,7 @@ public class NewsArticleWorker extends AbstractBehavior<PublishEventIntent> {
 
     public NewsArticleWorker(ActorContext<PublishEventIntent> context, KafkaProducer kafkaProducer) {
         super(context);
-        this.newsArticleService = new NewsArticleService();//todo find how to autowire
+        this.newsArticleService = new NewsArticleService();
         this.kafkaProducer = kafkaProducer;
     }
 
@@ -36,18 +36,14 @@ public class NewsArticleWorker extends AbstractBehavior<PublishEventIntent> {
 
     private Behavior<PublishEventIntent> onFetch(PublishEventIntent command) {
         getContext().getLog().info("Fetching news items for {}!", command.getTopic());
-        //todo its fine to block here right?
         List<NewsArticle> newsArticles = newsArticleService.getNewsItemsByTopic(command.getTopic()).toCompletableFuture().join();
 
         System.out.println("Fetched news items for : " + command.getTopic() + " " + newsArticles);
 
-        //todo publish on kafka topic here
         for (NewsArticle newsArticle : newsArticles) {
             kafkaProducer.sendMessage(newsArticle, "news.articles");
         }
 
-        //todo, do we need a replyto?
-        //command.replyTo.tell(new NewsItemsFetchResponse(command.getTopic(), getContext().getSelf(), newsItems));
         return this;
     }
 

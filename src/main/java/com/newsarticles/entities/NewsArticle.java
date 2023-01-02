@@ -1,4 +1,4 @@
-package com.news.entities;
+package com.newsarticles.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

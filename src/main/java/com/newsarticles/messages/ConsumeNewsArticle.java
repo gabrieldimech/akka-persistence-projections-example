@@ -1,6 +1,6 @@
-package com.news.messages;
+package com.newsarticles.messages;
 
-import com.news.entities.NewsArticle;
+import com.newsarticles.entities.NewsArticle;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,14 +1,10 @@
-package com.news.services;
+package com.newsarticles.services;
 
-import akka.actor.typed.ActorSystem;
-import com.news.entities.NewsArticle;
-import com.news.messages.ConsumeNewsArticle;
-import com.news.messages.NewsArticleMessage;
+import com.newsarticles.entities.NewsArticle;
 import com.sun.syndication.feed.synd.SyndEntryImpl;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;

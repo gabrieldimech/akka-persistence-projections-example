@@ -1,10 +1,10 @@
-package com.news.actors;
+package com.newsarticles.actors;
 
 import akka.actor.typed.ActorSystem;
-import com.news.entities.NewsArticle;
-import com.news.messages.ConsumeNewsArticle;
-import com.news.messages.NewsArticleMessage;
-import com.news.services.NewsArticleService;
+import com.newsarticles.entities.NewsArticle;
+import com.newsarticles.messages.ConsumeNewsArticle;
+import com.newsarticles.messages.NewsArticleMessage;
+import com.newsarticles.services.NewsArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;

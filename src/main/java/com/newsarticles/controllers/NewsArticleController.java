@@ -1,12 +1,12 @@
-package com.news.controllers;
+package com.newsarticles.controllers;
 
 import akka.actor.typed.ActorSystem;
 import com.kafka.KafkaProducer;
-import com.news.dto.NewsItemsRequestDto;
-import com.news.entities.NewsArticle;
-import com.news.messages.NewsArticleMessage;
-import com.news.messages.PublishEventIntent;
-import com.news.services.NewsArticleService;
+import com.newsarticles.dto.NewsItemsRequestDto;
+import com.newsarticles.entities.NewsArticle;
+import com.newsarticles.messages.NewsArticleMessage;
+import com.newsarticles.messages.PublishEventIntent;
+import com.newsarticles.services.NewsArticleService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,15 +37,9 @@ public class NewsArticleController {
     public ResponseEntity<Map<String, List<NewsArticle>>> publishNewsItems(@RequestBody NewsItemsRequestDto newsItemsRequestDto) {
 
         Map<String, List<NewsArticle>> result = new HashMap<>();
-        // final ActorSystem<NewsArticleMessage> supervisorRef =
-        //   ActorSystem.create(NewsArticleSupervisor.create(), "supervisor");
         //1) for each topic in request we want to instruct the supervisor to either spawn a new actor or use an existing one to spawn a NewsItemsWorker
         //2) each NewsItemsWorker will process a topic by invoking the NewsItemsWorker and this will retrieve the latest RSS new feed items
         //3) for each topic new item , we publish a kafka message on the relevant topic
-
- /*       ActorRef supervisorRef = actorSystem.actorOf(SPRING_EXTENSION_PROVIDER.get(actorSystem)
-            .props("newsArticleSupervisor"), "newsArticleSupervisor");*/
-        //final Optional<ActorRef<Void>> childActorRef =actorSystem .getContext().getChild(message.getTopic());
 
         for (String topic : newsItemsRequestDto.getTopics()) {
             supervisor.tell(new PublishEventIntent(topic));

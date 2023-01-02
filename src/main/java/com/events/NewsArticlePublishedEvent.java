@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsItemPublishedEvent implements Event {
+public class NewsArticlePublishedEvent implements Event {
     private Long   timestamp;
-    private String newsItemTopic;
-    public static final String TYPE = "NEWS_ITEM_PUBLISHED";
+    private String newsArticleTopic;
+    public static final String TYPE = "NEWS_ARTICLE_PUBLISHED";
 
     @Override
     public String getType() {

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +22,4 @@ public class KafkaTopicConfig {
         return new KafkaAdmin(configs);
     }
 
-    @Bean
-    public NewTopic newsItemsTopic() {
-         return new NewTopic("news-items", 1, (short) 1);
-    }
 }

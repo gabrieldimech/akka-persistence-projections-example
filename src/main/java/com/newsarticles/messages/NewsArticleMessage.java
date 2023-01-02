@@ -1,4 +1,4 @@
-package com.news.messages;
+package com.newsarticles.messages;
 
 public interface NewsArticleMessage {
 }

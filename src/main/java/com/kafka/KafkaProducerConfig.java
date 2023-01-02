@@ -3,7 +3,7 @@ package com.kafka;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.news.entities.NewsArticle;
+import com.newsarticles.entities.NewsArticle;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

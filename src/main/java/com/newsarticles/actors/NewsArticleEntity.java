@@ -1,4 +1,4 @@
-package com.news.actors;
+package com.newsarticles.actors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,8 @@ import akka.persistence.typed.PersistenceId;
 import akka.persistence.typed.javadsl.CommandHandler;
 import akka.persistence.typed.javadsl.EventHandler;
 import akka.persistence.typed.javadsl.EventSourcedBehavior;
-//import com.lightbend.lagom.serialization.Jsonable;
 import com.lightbend.lagom.serialization.Jsonable;
-import com.news.entities.NewsArticle;
+import com.newsarticles.entities.NewsArticle;
 import org.slf4j.Logger;
 
 public class NewsArticleEntity extends EventSourcedBehavior<

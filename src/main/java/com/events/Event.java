@@ -13,9 +13,9 @@ public interface Event extends KafkaMessage {
      */
     Long getTimestamp();
 
-    String getNewsItemTopic();
+    String getNewsArticleTopic();
 
     default String key() {
-        return getNewsItemTopic();
+        return getNewsArticleTopic();
     }
 }
