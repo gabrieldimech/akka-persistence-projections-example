@@ -1,10 +1,5 @@
-# Google News Items Fetcher
-This app is intended to demonstrate the use of akka actors together with the `fork-join-pattern`.
-A number of topics can be provided to the API and these are in turn forked out as Google news API 
-requests in separate actor instances. The response of each actor is then aggregated and returned to the user using the 
-Ask pattern in akka. Note that the results returned are for the past 1hr.
-
-Both the `Aggregator` and `Request-Response with ask from outside an Actor` logic has been retrieved from the [Interaction Patterns docs](https://doc.akka.io/docs/akka/current/typed/interaction-patterns.html#request-response-with-ask-between-two-actors).
+# Event Sourcing with Spring Boot / Akka Peristence / Projections
+This example is intended to show how to leverage AKKA persistence as a tool to implement (event sourcing)[https://doc.akka.io/docs/akka/current/typed/persistence.html] in an API. Tio demonstrate this, the application consumes kafka messages (this could easily be swapped with HTTP requets directly), and leverages AKKA persistence to append events to an event store. AKKA persistence will handle the management of the event store management which in this case is configrured to persist all relevant management data in Mysql. A projection was added to the application in order to persist events in the mysql databse too. This serves as the write model of a CQRS app, hence adding a read model that loads this Mysql data (or better add a projection to another database which can handle quick reads) will add the benefit of having a well designed CQRS app where the write and read models are separated. 
 
 # Running the app
 Using the maven commaned below will build and deploy the project:
